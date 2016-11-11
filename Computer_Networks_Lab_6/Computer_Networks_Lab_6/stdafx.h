@@ -1,9 +1,7 @@
-#pragma once
+﻿#pragma once
 #define _WINSOCK_DEPRECATED_NO_WARNINGS
 #define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
-#include <string>
-#include <iomanip>
 
 #include <WinSock2.h>
 #include <IPHlpApi.h>
@@ -12,8 +10,6 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include <queue>
-#include <bitset>
 
 #pragma comment(lib, "iphlpapi.lib")
 #pragma comment(lib, "ws2_32.lib")

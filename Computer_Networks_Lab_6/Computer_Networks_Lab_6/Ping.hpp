@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #include "Parm.hpp"
 namespace Ping
 {

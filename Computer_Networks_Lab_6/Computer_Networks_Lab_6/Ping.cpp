@@ -1,4 +1,4 @@
-#include "stdafx.h"
+п»ї#include "stdafx.h"
 #include "Ping.hpp"
 namespace Ping
 {
@@ -9,39 +9,39 @@ namespace Ping
 		LPVOID replyBuffer = NULL;
 		DWORD replySize = 0;
 		DWORD dwRetValue = 0;
-
+		
 		auto ipAddres = inet_addr(param.ping.IP);
-		HANDLE hIP = IcmpCreateFile();	// создаем соединение с которым будем работать
+		HANDLE hIP = IcmpCreateFile();	// СЃРѕР·РґР°РµРј СЃРѕРµРґРёРЅРµРЅРёРµ СЃ РєРѕС‚РѕСЂС‹Рј Р±СѓРґРµРј СЂР°Р±РѕС‚Р°С‚СЊ
 		replySize = sizeof(ICMP_ECHO_REPLY) + sizeof(sendData);
 		replyBuffer = (VOID*)malloc(replySize);
 		IP_OPTION_INFORMATION option = { 255, 0, 0, 0, 0 };
-		if (hIP == INVALID_HANDLE_VALUE)	// если не удалось создать
+		if (hIP == INVALID_HANDLE_VALUE)	// РµСЃР»Рё РЅРµ СѓРґР°Р»РѕСЃСЊ СЃРѕР·РґР°С‚СЊ
 		{
-			throw "Не удалось создать подключение.";
-			WSACleanup();	// очищаем память
+			throw "РќРµ СѓРґР°Р»РѕСЃСЊ СЃРѕР·РґР°С‚СЊ РїРѕРґРєР»СЋС‡РµРЅРёРµ.";
+			WSACleanup();
 			return;
 		}
-		cout << "Обмен пакетами с " << param.ping.IP << " размером " << sizeof(sendData) << " байт" << endl;
+		cout << "РћР±РјРµРЅ РїР°РєРµС‚Р°РјРё СЃ " << param.ping.IP << " СЂР°Р·РјРµСЂРѕРј " << sizeof(sendData) << " Р±Р°Р№С‚" << endl;
 		for (int i = 0; i < param.ping.count; i++)
 		{
 			dwRetValue = IcmpSendEcho(hIP, ipAddres, sendData, sizeof(sendData), &option, replyBuffer, replySize, param.ping.timeout);
 			if (dwRetValue > 0)
 			{
 				PICMP_ECHO_REPLY pEchoReply = (PICMP_ECHO_REPLY)replyBuffer;
-				cout << "Ответ от " << param.ping.IP << " Время: " << pEchoReply->RoundTripTime << " мс." <<
-					" Число байт: " << pEchoReply->DataSize << endl;
+				cout << "РћС‚РІРµС‚ РѕС‚ " << param.ping.IP << " Р’СЂРµРјСЏ: " << pEchoReply->RoundTripTime << " РјСЃ." <<
+					" Р§РёСЃР»Рѕ Р±Р°Р№С‚: " << pEchoReply->DataSize << endl;
 			}
 			else
 			{
 				badEcho++;
 				PICMP_ECHO_REPLY pEchoReply = (PICMP_ECHO_REPLY)replyBuffer;
-				cout << "Превышен интервал ожидания" << endl;
+				cout << "РџСЂРµРІС‹С€РµРЅ РёРЅС‚РµСЂРІР°Р» РѕР¶РёРґР°РЅРёСЏ" << endl;
 			}
 		}
 		badPercent = (badEcho * 100) / param.ping.count;
-		cout << "Статистика с " << param.ping.IP << endl;
-		cout << "Пакетов отправленно: " << param.ping.count << ". Пакетов полученно: " << param.ping.count - badEcho <<
-			". Пакетов потерянно: " << badEcho << " (" << badPercent << "% потерь)" << endl;
+		cout << "РЎС‚Р°С‚РёСЃС‚РёРєР° СЃ " << param.ping.IP << endl;
+		cout << "РџР°РєРµС‚РѕРІ РѕС‚РїСЂР°РІР»РµРЅРѕ: " << param.ping.count << ". РџР°РєРµС‚РѕРІ РїРѕР»СѓС‡РµРЅРѕ: " << param.ping.count - badEcho <<
+			". РџР°РєРµС‚РѕРІ РїРѕС‚РµСЂСЏРЅРѕ: " << badEcho << " (" << badPercent << "% РїРѕС‚РµСЂСЊ)" << endl;
 		WSACleanup();
 	}
 	bool checkValidIP(char ip[255])
@@ -65,7 +65,7 @@ namespace Ping
 				else rc = false;
 			}
 		}
-		if (octetCount!=3) rc = false;
+		if (octetCount != 3) rc = false;
 		return rc;
 	}
 }
