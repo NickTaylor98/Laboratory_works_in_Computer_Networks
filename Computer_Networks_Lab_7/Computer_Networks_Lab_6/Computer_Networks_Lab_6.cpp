@@ -1,6 +1,6 @@
-// Computer_Networks_Lab_6.cpp: определяет точку входа для консольного приложения.
+п»ї// Computer_Networks_Lab_6.cpp: РѕРїСЂРµРґРµР»СЏРµС‚ С‚РѕС‡РєСѓ РІС…РѕРґР° РґР»СЏ РєРѕРЅСЃРѕР»СЊРЅРѕРіРѕ РїСЂРёР»РѕР¶РµРЅРёСЏ.
 //
-// Ввод в командной строке:Computer_Networks_Lab_6.exe id -ip:192.168.0.1 -mask:255.255.0.0
+
 #include "stdafx.h"
 #include "Ping.hpp"
 #include "Parm.hpp"

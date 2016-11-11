@@ -1,4 +1,4 @@
-#include "stdafx.h"
+п»ї#include "stdafx.h"
 #include "Parm.hpp"
 #include "Ping.hpp"
 #include "Id.hpp"
@@ -17,7 +17,7 @@ namespace Parm
 	  PARM param;
 	  bool isMask = 0;
 	  int parm_ip_size = strlen(PARM_IP),  i(0);
-	  if (argc == 1) throw "Параметры отсутствуют.";
+	  if (argc == 1) throw "РџР°СЂР°РјРµС‚СЂС‹ РѕС‚СЃСѓС‚СЃС‚РІСѓСЋС‚.";
 	  char* buf = new char[MAX_SIZE_OF_BUFFER];
 	  if (!strcmp(argv[1], PARM_PING))
 	  {
@@ -25,9 +25,9 @@ namespace Parm
 	      if (i > 0)//strstr(buf, PARM_IP))
 	      {
 	         strcpy(buf, argv[i] + strlen(PARM_IP));
-	         if (!Ping::checkValidIP(buf)) throw "Вы ввели неправильный ip адрес";
+	         if (!Ping::checkValidIP(buf)) throw "Р’С‹ РІРІРµР»Рё РЅРµРїСЂР°РІРёР»СЊРЅС‹Р№ ip Р°РґСЂРµСЃ";
 	         strcpy(param.ping.IP, buf);
-	         param.ping.count = 10; // инициализация по умолчанию
+	         param.ping.count = 10; // РёРЅРёС†РёР°Р»РёР·Р°С†РёСЏ РїРѕ СѓРјРѕР»С‡Р°РЅРёСЋ
 	         param.ping.timeout = 1000;
 	      }
 	      i = Find(argc, argv, PARM_TIME_OUT, buf);		//else if (strstr(buf, PARM_TIME_OUT))
@@ -49,14 +49,14 @@ namespace Parm
 		  if (i > 0)
 		  {
 			  strcpy(buf, argv[i] + strlen(PARM_MASK));
-			  if (!Id::isValidMask(buf)) throw "Вы ввели неправильную маску подсети";
+			  if (!Id::isValidMask(buf)) throw "Р’С‹ РІРІРµР»Рё РЅРµРїСЂР°РІРёР»СЊРЅСѓСЋ РјР°СЃРєСѓ РїРѕРґСЃРµС‚Рё";
 			  strcpy(param.id.MASK, buf);
 		  }
 		  i = Find(argc, argv, PARM_IP, buf);
 		  if (i > 0)//strstr(buf, PARM_IP))
 		  {
 			  strcpy(buf, argv[i] + strlen(PARM_IP));
-			  if (!Ping::checkValidIP(buf)) throw "Вы ввели неправильный ip адрес";
+			  if (!Ping::checkValidIP(buf)) throw "Р’С‹ РІРІРµР»Рё РЅРµРїСЂР°РІРёР»СЊРЅС‹Р№ ip Р°РґСЂРµСЃ";
 			  strcpy(param.id.IP, buf);
 		  }
 	  }

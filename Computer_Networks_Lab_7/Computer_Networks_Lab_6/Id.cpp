@@ -1,4 +1,4 @@
-#include "stdafx.h"
+п»ї#include "stdafx.h"
 #include "Id.hpp"
 #define MAX_SIZE_OF_BUFFER 16
 #define NUMBER_OF_OCTETS 4
@@ -36,8 +36,8 @@ namespace Id
 	}
 	bool isValidMask(char mask[255])
 	{
-		bool rc(true), isEndOne(false); // isEndOne - переменная, отвечающая за окончание единиц в октете (0 - если, 
-		char *buf = new char[4];         // на предыдущем октете были одни единицы, 1 - если, были нули)
+		bool rc(true), isEndOne(false); // isEndOne - РїРµСЂРµРјРµРЅРЅР°СЏ, РѕС‚РІРµС‡Р°СЋС‰Р°СЏ Р·Р° РѕРєРѕРЅС‡Р°РЅРёРµ РµРґРёРЅРёС† РІ РѕРєС‚РµС‚Рµ (0 - РµСЃР»Рё, 
+		char *buf = new char[4];         // РЅР° РїСЂРµРґС‹РґСѓС‰РµРј РѕРєС‚РµС‚Рµ Р±С‹Р»Рё РѕРґРЅРё РµРґРёРЅРёС†С‹, 1 - РµСЃР»Рё, Р±С‹Р»Рё РЅСѓР»Рё)
 		int bufCount = 0, octet = 0, octetCount = 0; 
 		for (unsigned int i = 0; i < strlen(mask) && rc; i++)      
 		{

@@ -1,4 +1,4 @@
-#pragma once
+﻿#pragma once
 #define PARM_MAX_SIZE 20
 #define PARM_PING		"ping"
 #define PARM_IP			"-ip:"
