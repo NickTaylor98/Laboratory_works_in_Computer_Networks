@@ -24,7 +24,7 @@ namespace Ping
 		cout << "Обмен пакетами с " << param.ping.IP << " размером " << sizeof(sendData) << " байт" << endl;
 		for (int i = 0; i < param.ping.count; i++)
 		{
-			dwRetValue = IcmpSendEcho(hIP, ipAddres, sendData, sizeof(sendData), NULL, replyBuffer, replySize, param.ping.timeout);
+			dwRetValue = IcmpSendEcho(hIP, ipAddres, sendData, sizeof(sendData), &option, replyBuffer, replySize, param.ping.timeout);
 			if (dwRetValue > 0)
 			{
 				PICMP_ECHO_REPLY pEchoReply = (PICMP_ECHO_REPLY)replyBuffer;
