@@ -5,7 +5,7 @@ namespace Id
 	struct Octet
 	{
 		char* octet;
-		int value_of_octet;
+		short value_of_octet;
 		Octet(char* arr);
 		Octet();
 	};

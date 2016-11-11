@@ -63,23 +63,29 @@ namespace Id
 		if (octetCount != 3) rc = false;
 		return rc;
 	}
+	void Print(char * str, Octet* For_IP_Adress, Octet* For_Mask)
+	{
+		cout << str << endl;
+		short rc(0);
+		for (int i(0); i < NUMBER_OF_OCTETS; i++)
+		{
+			if (strstr(str, "Network ID:")) rc = For_IP_Adress[i].value_of_octet & For_Mask[i].value_of_octet;
+			else if (strstr(str, "Host ID: ")) rc = For_IP_Adress[i].value_of_octet & ~For_Mask[i].value_of_octet;
+			else if (strstr(str, "Broadcast: "))
+				if (!(rc = For_IP_Adress[i].value_of_octet & For_Mask[i].value_of_octet)) rc = 0xff;
+			cout << rc << (i == NUMBER_OF_OCTETS - 1 ? '\n' : '.');
+		}
+		cout << endl;
+	}
 	void IDs(Parm::PARM parm)
 	{
 		Octet* For_IP_Adress = Divide(parm.id.IP);
 		Octet* For_Mask = Divide(parm.id.MASK);
-		cout << "Network ID: " << endl;
-		for (int i(0); i < NUMBER_OF_OCTETS; i++)
-		{
-			int rc = For_IP_Adress[i].value_of_octet & For_Mask[i].value_of_octet;
-			cout << rc << (i == NUMBER_OF_OCTETS-1? '\n' : '.');
-		}
-		cout << endl;
-		cout << "Host ID: " << endl;
-		for (int i(0); i < NUMBER_OF_OCTETS; i++)
-		{
-			int rc = For_IP_Adress[i].value_of_octet & ~For_Mask[i].value_of_octet;
-			cout << rc << (i == NUMBER_OF_OCTETS - 1 ? '\n' : '.');
-		}
-		cout << endl;
+		cout << "IP Adress:" << '\n' << parm.id.IP << '\n' << '\n';
+		cout << "Mask: " << '\n' << parm.id.MASK << '\n' << '\n';
+		Print("Network ID:", For_IP_Adress, For_Mask);
+		Print("Host ID: ", For_IP_Adress, For_Mask);
+		Print("Broadcast: ", For_IP_Adress, For_Mask);
+		delete[] For_Mask, For_IP_Adress;
 	}
 }

@@ -1,5 +1,7 @@
 ﻿#include "stdafx.h"
 #include "Ping.hpp"
+#define SPECIAL_ADR_NULL "0.0.0.0"
+#define SPECIAL_ADR_255 "255.255.255.255"
 namespace Ping
 {
 	void ping(Parm::PARM param)
@@ -49,14 +51,15 @@ namespace Ping
 		bool rc(true);
 		char *buf = new char[4];
 		int bufCount = 0, octet = 0, octetCount = 0;
+		if (strstr(ip, SPECIAL_ADR_NULL) || strstr(ip, SPECIAL_ADR_255)) rc = false;
 		for (unsigned int i = 0; i < strlen(ip) && rc; i++)
 		{
 			if (ip[i] == '.')
 			{
 				buf[bufCount] = 0x00;
-				octetCount++;
 				octet = atoi(buf);
-				if (octet > 255) rc = false;
+				if (octet > 255 || (octet == 127 && !octetCount)) rc = false;
+				octetCount++;
 				bufCount = 0;
 			}
 			else
